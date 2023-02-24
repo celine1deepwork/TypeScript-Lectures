@@ -77,10 +77,11 @@ function getName(obj: User | Person) {
   }
 
   // Generics Array : Only difference we use type & writing without putting end () :)
-type StringArray = Array<string>;
-type intArray = Array<number>;
-type ObjectArray = Array<{name : string, age: number}>;
-type ObjectArray2 = Array<typeof user>;
+const StringArray = Array<string>;
+const intArray = Array<number>;
+const ObjectArray = Array<{name : string, age: number}>;
+const ObjectArray2 = Array<typeof user>;
+
 
 
 //We can declare your own types that use generics:
@@ -122,5 +123,57 @@ const carReal2 = new Car("Mercedes", 563094);
 const carReal = {brand : "Mercedes" , price : 12020};
 saveCarIntoList(carReal);
 
+//Second way to create the objects 
+const obj =  {
+name : "Carrot",
+for : "Max",
+details: {
+color : "black",
+weight : 10,
+}
+}
+console.log(obj.details.color);
+//also we're able to use the parameters inside the bracets ; like [ parameter ] without using " . "
+console.log(obj["details"]["color"]); 
+// creating array as usual
+const animals = ["dog", "cat", "elephant"];
+//OR Generic 
+animals.push("Butterfly");// adds first element as Butterfly.
+animals.pop(); //removes elephant.
+// NOTE : unshift is pretty similar to the push array's first index like in queue's.
+let animalls = Array<string>;
+// For Loop
+for(let i = 0; i < animals.length ; i++){
+    console.log(animals.pop());
+}
+//Second way For Loop
+for(const animal of animals){
+    if(animal.charAt(0) == "B" ){
+        console.log(animal);
+    }
+} // will return Butterfly...
+// many type of array is possible via TypeScript...
+const arr = [true, "animal", 34355];
+//Fucntion 
+function avg(...args){
+    let sum = 0 ; 
+    for(const item of args){
+        sum += item;
+    }
+    return sum/ args.length; // get's the average.
+}
+avg(1,3,5,6,7,8,5,2);
 
 
+// Tree's 
+function countChars(elm) {
+    if (elm.nodeType === 3) {
+      // TEXT_NODE
+      return elm.nodeValue.length;
+    }
+    let count = 0;
+    for (let i = 0, child; (child = elm.childNodes[i]); i++) {
+      count += countChars(child);
+    }
+    return count;
+  }
